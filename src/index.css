@@ -157,7 +157,7 @@ details.help-accordion .accordion-content {
   header, footer, aside, .fixed, .sticky, button {
     display: none !important;
   }
-  main, article, .max-w-[1200px] {
+  main, article {
     max-w: 100% !important;
     width: 100% !important;
     border: none !important;

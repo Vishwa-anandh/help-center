@@ -37,17 +37,17 @@ export const helpArticles: HelpArticle[] = [
       {
         title: "Enter Email Address",
         action: "On the login page, enter your registered email address into the Email field. *(Note: Credentials in screenshots are securely blurred).* ",
-        image: "/images/login_01_email.png"
+        image: "/images/auth/login_01_email.png"
       },
       {
         title: "Enter Password",
         action: "Enter your secure password into the Password field.",
-        image: "/images/login_02_password.png"
+        image: "/images/auth/login_02_password.png"
       },
       {
         title: "Submit Credentials",
         action: "Click the **Sign In / Verify** button to submit your credentials to the system.",
-        image: "/images/login_03_submit.png"
+        image: "/images/auth/login_03_submit.png"
       },
       {
         title: "Two-Factor Authentication (OTP)",

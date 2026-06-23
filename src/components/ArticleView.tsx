@@ -38,6 +38,12 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
   }, [article.id]);
 
   useEffect(() => {
+    const handleOpenSidebar = () => setIsSidebarOpen(true);
+    document.addEventListener('openSidebar', handleOpenSidebar);
+    return () => document.removeEventListener('openSidebar', handleOpenSidebar);
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setIsSidebarOpen(true);
@@ -172,7 +178,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
         )}
       </AnimatePresence>
 
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-14 w-full max-w-full mx-auto py-8 px-4 md:px-8 items-start relative transition-colors duration-300">
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 w-full max-w-full mx-auto py-8 px-4 md:px-8 items-start relative transition-colors duration-300">
         
         {/* Mobile Sidebar Overlay */}
         {isSidebarOpen && (
@@ -185,7 +191,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
 
         {/* Sidebar Modules */}
         <aside 
-          className={`fixed inset-y-0 left-0 z-[70] lg:z-0 w-[300px] bg-white lg:bg-transparent lg:sticky lg:top-[100px] lg:w-[400px] flex-shrink-0 flex flex-col h-screen lg:h-[calc(100vh-120px)] overflow-y-auto custom-scrollbar p-6 lg:p-0 lg:pr-2 shadow-2xl lg:shadow-none transition-transform duration-300 ease-in-out ${
+          className={`fixed inset-y-0 left-0 z-[70] lg:z-0 w-[300px] bg-white lg:bg-transparent lg:sticky lg:top-[100px] lg:w-[250px] xl:w-[280px] flex-shrink-0 flex flex-col h-screen lg:h-[calc(100vh-120px)] overflow-y-auto custom-scrollbar p-6 lg:p-0 lg:pr-2 shadow-2xl lg:shadow-none transition-transform duration-300 ease-in-out ${
             isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:hidden lg:translate-x-0'
           }`}
           aria-label="Sidebar navigation"
@@ -218,7 +224,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                       <div className="flex items-center gap-4 mb-3 relative z-10">
                         <div className="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center shrink-0 shadow-sm border-2 border-white ring-1 ring-red-100">
                         </div>
-                        <h3 className="font-semibold text-[14px] text-[#111827]">{cat.title}</h3>
+                        <h3 className="font-medium text-[12px] text-gray-500">{cat.title}</h3>
                       </div>
                       
                       {/* Submodules (Articles) */}
@@ -243,8 +249,8 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                                 isActive ? 'bg-red-600 border-red-600' : 'bg-white border-red-300 group-hover:border-red-400'
                               }`} aria-hidden="true" />
                               
-                              <span className={`text-[13px] leading-[1.4] ${
-                                isActive ? 'text-red-700 font-semibold' : 'text-[#4b5563] group-hover:text-[#111827]'
+                              <span className={`text-[14px] leading-[1.4] font-bold ${
+                                isActive ? 'text-red-700' : 'text-[#111827] group-hover:text-black'
                               }`}>
                                 {art.title}
                               </span>
@@ -284,7 +290,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
             )}
           </aside>
 
-        <div className="flex-1 max-w-[1000px] mx-auto w-full">
+        <div className="flex-1 lg:min-w-[55%] 2xl:min-w-[60%] max-w-none mx-auto w-full">
           {isLoading ? (
             <div className="bg-white border border-[#e5e7eb] rounded-xl p-[30px] shadow-sm animate-pulse" aria-busy="true" aria-live="polite">
                <div className="h-4 w-48 bg-gray-200 rounded mb-6"></div>
@@ -300,7 +306,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
               <article className="p-[30px] md:p-[40px]">
               
               <nav aria-label="Breadcrumb" className="flex items-center justify-between mb-3">
-                <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden p-2 -ml-2 text-gray-600"><Menu className="w-6 h-6" /></button>
+
                 <div className="flex items-center gap-2 text-[13px] text-[#6b7280] font-medium">
                   <span className="hover:text-[#111827] cursor-pointer transition-colors min-h-[44px] flex items-center">Help Center</span>
                   <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />

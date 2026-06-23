@@ -39,6 +39,13 @@ export default function App() {
           <div className="flex items-center px-4 md:px-6 py-2.5 justify-between">
             <div className="flex items-center gap-2 sm:gap-4">
 
+              <button 
+                className="p-2.5 hover:bg-gray-100 rounded-full transition-colors flex lg:hidden items-center justify-center min-w-[44px] min-h-[44px] active:scale-95"
+                aria-label="Open main menu"
+                onClick={() => document.dispatchEvent(new CustomEvent('openSidebar'))}
+              >
+                <Menu className="w-6 h-6 text-[#4b5563]" />
+              </button>
               <span 
                 onClick={() => { setActiveArticleId("login-workflow"); }}
                 className="cursor-pointer transition-transform hover:scale-[1.02] flex items-center min-h-[44px]"
@@ -47,7 +54,7 @@ export default function App() {
                 onKeyDown={(e) => { if (e.key === 'Enter') setActiveArticleId("login-workflow"); }}
                 aria-label="Matrix Vault Home"
               >
-                <img src="/images/matrix_vault_logo.png" alt="Matrix Vault" className="h-10 sm:h-12 w-auto object-contain" />
+                <img src="/images/branding/matrix_vault_logo.png" alt="Matrix Vault" className="h-10 sm:h-12 w-auto object-contain" />
               </span>
             </div>
             
