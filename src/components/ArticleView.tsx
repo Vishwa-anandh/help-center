@@ -307,12 +307,12 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
               
               <nav aria-label="Breadcrumb" className="flex items-center justify-between mb-3">
 
-                <div className="flex items-center gap-2 text-[13px] text-[#6b7280] font-medium">
+                <div className="flex flex-wrap items-center gap-2 text-[13px] text-[#6b7280] font-medium">
                   <span className="hover:text-[#111827] cursor-pointer transition-colors min-h-[44px] flex items-center">Help Center</span>
                   <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
                   <span className="hover:text-[#111827] cursor-pointer transition-colors min-h-[44px] flex items-center">{currentCategory?.title || 'Category'}</span>
                   <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span className="text-[#111827] truncate max-w-[200px]" aria-current="page">{article.title}</span>
+                  <span className="text-[#111827]" aria-current="page">{article.title}</span>
                 </div>
                 
                 {/* 46. & 49. Share and Bookmark Actions */}
