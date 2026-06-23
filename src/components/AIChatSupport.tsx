@@ -154,6 +154,7 @@ export default function AIChatSupport({ context }: { context?: string }) {
 
           <form onSubmit={handleSendMessage} className="p-3 bg-white flex items-center gap-2">
             <input 
+               data-loom-hide="true"
                type="text"
                value={input}
                onChange={e => setInput(e.target.value)}

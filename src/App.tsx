@@ -62,6 +62,7 @@ export default function App() {
               <div className={`relative bg-[#f3f4f6] focus-within:bg-white focus-within:shadow-md focus-within:border-transparent rounded-full flex items-center px-4 py-2 sm:py-3 border border-transparent transition-all z-50 ${isSearchFocused ? 'ring-2 ring-red-500/20' : ''}`}>
                  <Search className="w-5 h-5 text-[#4b5563]" aria-hidden="true" />
                  <input 
+                   data-loom-hide="true"
                    value={searchQuery}
                    onChange={(e) => setSearchQuery(e.target.value)}
                    onFocus={() => setIsSearchFocused(true)}

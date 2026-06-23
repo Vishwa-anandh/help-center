@@ -158,6 +158,7 @@ export default function ContactSupport() {
                 <div className="flex flex-col space-y-1">
                   <label htmlFor="ticket-name" className="text-xs font-semibold text-slate-700 font-sans">Full Name</label>
                   <input
+                    data-loom-hide="true"
                     id="ticket-name"
                     type="text"
                     name="name"
@@ -171,6 +172,7 @@ export default function ContactSupport() {
                 <div className="flex flex-col space-y-1">
                   <label htmlFor="ticket-email" className="text-xs font-semibold text-slate-700 font-sans">Email Address</label>
                   <input
+                    data-loom-hide="true"
                     id="ticket-email"
                     type="email"
                     name="email"
@@ -220,6 +222,7 @@ export default function ContactSupport() {
               <div className="flex flex-col space-y-1">
                  <label htmlFor="ticket-message" className="text-xs font-semibold text-slate-700 font-sans">Support Message</label>
                  <textarea
+                   data-loom-hide="true"
                    id="ticket-message"
                    name="message"
                    required

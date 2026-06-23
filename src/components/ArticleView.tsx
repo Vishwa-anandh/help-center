@@ -422,8 +422,6 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                                 {step.image && (
                                   <div className={`mt-2 relative group/img inline-block transition-opacity ${isCompleted ? 'opacity-70' : ''}`}>
                                     <div className="absolute inset-0 bg-red-900/10 opacity-0 group-hover/img:opacity-100 rounded-xl transition-opacity pointer-events-none flex items-center justify-center" aria-hidden="true">
-                                      {/* Mock video icon if image was a video */}
-                                      {index === 0 && <PlayCircle className="w-16 h-16 text-white drop-shadow-md" />}
                                     </div>
                                     <button
                                       onClick={() => setLightboxImage(step.image as string)}
@@ -503,6 +501,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                     <div className="w-full max-w-xl">
                       <label htmlFor="feedback" className="block text-[13px] text-gray-600 mb-2 font-medium">How can we improve this article?</label>
                       <textarea 
+                        data-loom-hide="true"
                         id="feedback"
                         rows={3}
                         value={feedbackText}
