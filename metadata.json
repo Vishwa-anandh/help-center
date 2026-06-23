@@ -1,0 +1,6 @@
+{
+  "name": "Help Center",
+  "description": "An elegant, comprehensive Help Center with categorized articles, advanced instant search, a support ticket form, and an interactive AI Support Assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

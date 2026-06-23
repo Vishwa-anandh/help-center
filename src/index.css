@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+body {
+  font-family: var(--font-sans);
+  color: #374151;
+  color-scheme: light;
+}
+
+/* Google Help Markdown Styles */
+.markdown-body h1 {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 400;
+  color: #111827;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body h2 {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: #111827;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #111827;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-body p {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.markdown-body ul {
+  list-style-type: disc;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.markdown-body ol {
+  list-style-type: decimal;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.markdown-body li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.markdown-body a {
+  color: #6366f1;
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body pre {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+/* Accordion Support */
+details.help-accordion {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0;
+}
+
+details.help-accordion summary {
+  padding: 16px 0;
+  color: #6366f1;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+details.help-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+details.help-accordion summary::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #6366f1;
+  border-bottom: 2px solid #6366f1;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease-in-out;
+  margin-right: 8px;
+}
+
+details.help-accordion[open] summary::after {
+  transform: rotate(-135deg);
+  margin-top: 4px;
+}
+
+details.help-accordion .accordion-content {
+  padding: 8px 0 24px 0;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #bdc1c6;
+}
+
+/* 45. Print Stylesheet */
+@media print {
+  body {
+    color-scheme: light;
+    background: white;
+  }
+  header, footer, aside, .fixed, .sticky, button {
+    display: none !important;
+  }
+  main, article, .max-w-[1200px] {
+    max-w: 100% !important;
+    width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  h1 { font-size: 24pt !important; }
+  h2 { font-size: 18pt !important; }
+  p, div, li { font-size: 12pt !important; color: #000 !important; }
+  a { text-decoration: underline; color: #000 !important; }
+}
