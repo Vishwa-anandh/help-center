@@ -31,10 +31,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
   const [copiedLink, setCopiedLink] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 300);
     if (window.innerWidth < 1024) setIsSidebarOpen(false);
-    return () => clearTimeout(timer);
   }, [article.id]);
 
   useEffect(() => {
@@ -191,7 +188,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
 
         {/* Sidebar Modules */}
         <aside 
-          className={`fixed inset-y-0 left-0 z-[70] lg:z-0 w-[300px] bg-white lg:bg-transparent lg:sticky lg:top-[100px] lg:w-[250px] xl:w-[280px] flex-shrink-0 flex flex-col h-screen lg:h-[calc(100vh-120px)] overflow-y-auto custom-scrollbar p-6 lg:p-0 lg:pr-2 shadow-2xl lg:shadow-none transition-transform duration-300 ease-in-out ${
+          className={`fixed inset-y-0 left-0 z-[70] lg:z-0 w-[300px] bg-white lg:bg-transparent lg:sticky lg:top-[100px] lg:w-[250px] xl:w-[280px] flex-shrink-0 flex flex-col h-screen lg:h-[calc(100vh-120px)] overflow-y-auto hide-scrollbar p-6 lg:p-0 lg:pr-2 shadow-2xl lg:shadow-none transition-transform duration-300 ease-in-out ${
             isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:hidden lg:translate-x-0'
           }`}
           aria-label="Sidebar navigation"
@@ -214,17 +211,19 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                   if (catArticles.length === 0) return null;
                   
                   return (
-                    <div key={cat.id} className="relative pb-6">
+                    <div key={cat.id} className="relative pb-4">
                       {/* Vertical line connecting modules */}
                       {catIndex !== categories.length - 1 && (
                         <div className="absolute left-[11px] top-6 bottom-[-8px] w-0.5 bg-red-100" aria-hidden="true" />
                       )}
                       
                       {/* Module Header */}
-                      <div className="flex items-center gap-4 mb-3 relative z-10">
-                        <div className="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center shrink-0 shadow-sm border-2 border-white ring-1 ring-red-100">
+                      <div className="flex items-center gap-3 mb-2.5 relative z-10">
+                        <div className={`w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm border-2 transition-colors ${
+                          article.categoryId === cat.id ? 'border-red-500' : 'border-red-300'
+                        }`}>
                         </div>
-                        <h3 className="font-medium text-[12px] text-gray-500">{cat.title}</h3>
+                        <h3 className={`font-medium text-[12px] ${article.categoryId === cat.id ? 'text-gray-800' : 'text-gray-500'}`}>{cat.title}</h3>
                       </div>
                       
                       {/* Submodules (Articles) */}
@@ -238,7 +237,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                             <a 
                               key={art.id} 
                               href={`#${art.id}`}
-                              className={`relative flex items-center gap-3 p-2 min-h-[36px] rounded-lg cursor-pointer transition-all outline-none focus-visible:ring-2 focus-visible:ring-red-500 group ${
+                              className={`relative flex items-center gap-2.5 py-1.5 px-2 min-h-[32px] rounded-lg cursor-pointer transition-all outline-none focus-visible:ring-2 focus-visible:ring-red-500 group ${
                                 isActive ? 'bg-red-50' : 'hover:bg-gray-50'
                               }`}
                               onClick={(e) => { e.preventDefault(); onSelectArticle(art.id); }}
@@ -249,7 +248,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                                 isActive ? 'bg-red-600 border-red-600' : 'bg-white border-red-300 group-hover:border-red-400'
                               }`} aria-hidden="true" />
                               
-                              <span className={`text-[14px] leading-[1.4] font-bold ${
+                              <span className={`text-[14px] leading-[1.4] font-medium ${
                                 isActive ? 'text-red-700' : 'text-[#111827] group-hover:text-black'
                               }`}>
                                 {art.title}
@@ -291,17 +290,6 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
           </aside>
 
         <div className="flex-1 lg:min-w-[55%] 2xl:min-w-[60%] max-w-none mx-auto w-full">
-          {isLoading ? (
-            <div className="bg-white border border-[#e5e7eb] rounded-xl p-[30px] shadow-sm animate-pulse" aria-busy="true" aria-live="polite">
-               <div className="h-4 w-48 bg-gray-200 rounded mb-6"></div>
-               <div className="h-10 w-3/4 bg-gray-200 rounded-xl mb-4"></div>
-               <div className="h-6 w-full bg-gray-100 rounded mb-2"></div>
-               <div className="h-6 w-5/6 bg-gray-100 rounded mb-10"></div>
-               <div className="h-24 w-full bg-gray-100 rounded-xl mb-6"></div>
-               <div className="h-24 w-full bg-gray-100 rounded-xl mb-6"></div>
-            </div>
-          ) : (
-            <>
               <main className="bg-white lg:border lg:border-[#e5e7eb] lg:rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
               <article className="p-[30px] md:p-[40px]">
               
@@ -336,7 +324,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                 </div>
               </nav>
 
-              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-[#111827] mb-2">
+              <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-[#111827] mb-2">
                 {article.title}
               </h1>
 
@@ -431,7 +419,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                                       <img 
                                         src={step.image} 
                                         alt={step.title} 
-                                        className="rounded-xl border border-[#e5e7eb] shadow-sm hover:shadow-lg w-full md:w-[70%] cursor-zoom-in transition-all duration-300 hover:-translate-y-1"
+                                        className="rounded-xl border border-[#e5e7eb] shadow-sm hover:shadow-lg w-[75%] md:w-[50%] cursor-zoom-in transition-all duration-300 hover:-translate-y-1"
                                       />
                                     </button>
                                   </div>
@@ -557,12 +545,10 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
               </button>
             ) : <div className="flex-1"></div>}
           </nav>
-          </>
-          )}
-
         </div>
 
-        <nav aria-label="Table of Contents" className="hidden xl:block w-[240px] flex-shrink-0 sticky top-[100px] h-[calc(100vh-120px)] overflow-y-auto custom-scrollbar">
+
+        <nav aria-label="Table of Contents" className="hidden xl:block w-[240px] flex-shrink-0 sticky top-[100px] h-[calc(100vh-120px)] overflow-y-auto hide-scrollbar">
            <div className="flex items-center justify-between mb-4">
              <h4 className="font-semibold text-[#111827] text-[12px] uppercase tracking-wider">On this page</h4>
              {article.steps && article.steps.length > 0 && (

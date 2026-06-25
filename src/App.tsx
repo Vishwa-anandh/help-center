@@ -36,7 +36,7 @@ export default function App() {
         
         {/* Header aligned to Google style */}
         <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#e5e7eb] shadow-sm transition-colors duration-300">
-          <div className="flex items-center px-4 md:px-6 py-2.5 justify-between">
+          <div className="flex items-center px-4 md:px-6 py-1.5 justify-between">
             <div className="flex items-center gap-2 sm:gap-4">
 
               <button 
@@ -54,12 +54,12 @@ export default function App() {
                 onKeyDown={(e) => { if (e.key === 'Enter') setActiveArticleId("login-workflow"); }}
                 aria-label="Matrix Vault Home"
               >
-                <img src="/images/branding/matrix_vault_logo.png" alt="Matrix Vault" className="h-10 sm:h-12 w-auto object-contain" />
+                <img src="/images/branding/matrix_vault_logo.png" alt="Matrix Vault" className="h-8 sm:h-9 w-auto object-contain" />
               </span>
             </div>
             
             <div className="flex-1 max-w-3xl mx-4 lg:mx-12 relative">
-              <div className={`relative bg-[#f3f4f6] focus-within:bg-white focus-within:shadow-md focus-within:border-transparent rounded-full flex items-center px-4 py-2 sm:py-3 border border-transparent transition-all z-50 ${isSearchFocused ? 'ring-2 ring-red-500/20' : ''}`}>
+              <div className={`relative bg-[#f3f4f6] focus-within:bg-white focus-within:shadow-md focus-within:border-transparent rounded-full flex items-center px-4 py-1.5 sm:py-2 border border-transparent transition-all z-50 ${isSearchFocused ? 'ring-2 ring-red-500/20' : ''}`}>
                  <Search className="w-5 h-5 text-[#4b5563]" aria-hidden="true" />
                  <input 
                    data-loom-hide="true"
@@ -137,7 +137,7 @@ export default function App() {
 
 
                <button 
-                 className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white text-sm font-bold ml-2 cursor-pointer shadow-sm hover:shadow-md transition-all active:scale-95 min-w-[44px] min-h-[44px]"
+                 className="w-9 h-9 rounded-full bg-red-600 flex items-center justify-center text-white text-sm font-bold ml-2 cursor-pointer shadow-sm hover:shadow-md transition-all active:scale-95 min-w-[36px] min-h-[36px]"
                  aria-label="User profile menu"
                >
                   V
@@ -168,7 +168,7 @@ export default function App() {
           </AnimatePresence>
         </main>
 
-        <AIChatSupport context={activeArticle?.title} />
+        <AIChatSupport activeArticle={activeArticle} allArticles={helpArticles} />
 
         {/* Simple Footer */}
         <footer className="bg-transparent border-t border-[#e5e7eb] py-6 text-[12px] text-[#4b5563] hidden md:block mt-auto" role="contentinfo">

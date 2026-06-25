@@ -9,9 +9,12 @@ interface Message {
   content: string;
 }
 
-export default function AIChatSupport({ context }: { context?: string }) {
+export default function AIChatSupport({ activeArticle, allArticles }: { activeArticle?: any, allArticles: any[] }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  
+  const context = activeArticle?.title;
+  
   const [messages, setMessages] = useState<Message[]>([
     { id: 'welcome', role: 'assistant', content: `Hello! I'm Maitsys AI. How can I help you${context ? ` with "${context}"` : ''} today?` }
   ]);
@@ -21,7 +24,7 @@ export default function AIChatSupport({ context }: { context?: string }) {
 
   // Update greeting when context changes
   useEffect(() => {
-    if (context && messages.length === 1) {
+    if (context && messages.length <= 1) {
       setMessages([{ id: 'welcome', role: 'assistant', content: `Hello! I'm Maitsys AI. How can I help you with "${context}" today?` }]);
     }
   }, [context]);
@@ -30,7 +33,58 @@ export default function AIChatSupport({ context }: { context?: string }) {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
-  const handleSendMessage = async (e?: React.FormEvent) => {
+  const generateLocalResponse = (query: string): string => {
+    const q = query.toLowerCase();
+    
+    if (q.match(/^(hi|hello|hey|help|howdy)/)) {
+      return "Hello! I'm here to help. You can ask me how to do specific tasks or request guidance on a workflow.";
+    }
+
+    const stopWords = ['what','when','where','how','why','this','that','with','the','and','for','you','can','please'];
+    const keywords = q.split(/\s+/).filter(w => w.length > 2 && !stopWords.includes(w));
+    
+    if (keywords.length === 0) {
+      return "Could you provide a bit more detail so I can help you better?";
+    }
+
+    // Search current article steps
+    if (activeArticle && activeArticle.steps) {
+      for (const step of activeArticle.steps) {
+        const stepText = (step.title + " " + step.action).toLowerCase();
+        // If at least one significant keyword matches
+        if (keywords.some(k => stepText.includes(k))) {
+          // Remove markdown image syntax
+          const cleanAction = step.action.replace(/!\[.*?\]\(.*?\)/g, '').trim();
+          return `Based on the current workflow, you should look at the step **"${step.title}"**: \n\n${cleanAction}`;
+        }
+      }
+    }
+
+    // Search all steps across all articles globally
+    for (const article of allArticles) {
+      if (article.steps) {
+        for (const step of article.steps) {
+          const stepText = (step.title + " " + step.action).toLowerCase();
+          if (keywords.some(k => stepText.includes(k))) {
+            const cleanAction = step.action.replace(/!\[.*?\]\(.*?\)/g, '').trim();
+            return `I found this in the **"${article.title}"** workflow under the step **"${step.title}"**: \n\n${cleanAction}`;
+          }
+        }
+      }
+    }
+
+    // Search all article titles/excerpts as fallback
+    for (const article of allArticles) {
+      const articleText = (article.title + " " + (article.excerpt || "")).toLowerCase();
+      if (keywords.some(k => articleText.includes(k))) {
+         return `I couldn't find exact steps, but the **"${article.title}"** workflow might have what you need.`;
+      }
+    }
+
+    return "I couldn't find an exact match for your question. Could you try checking the sidebar for other workflows?";
+  };
+
+  const handleSendMessage = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (!input.trim() || isLoading) return;
 
@@ -39,31 +93,16 @@ export default function AIChatSupport({ context }: { context?: string }) {
     setInput("");
     setIsLoading(true);
 
-    try {
-      const res = await fetch("/api/support-chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: userMsg.content,
-          chatHistory: messages
-        })
-      });
-
-      const data = await res.json();
+    // Simulate network delay and logic processing
+    setTimeout(() => {
+      const reply = generateLocalResponse(userMsg.content);
       setMessages(prev => [...prev, {
         id: Date.now().toString() + "1",
         role: "model",
-        content: data.reply
+        content: reply
       }]);
-    } catch {
-      setMessages(prev => [...prev, {
-        id: Date.now().toString() + "2",
-        role: "model",
-        content: "Network error occurred."
-      }]);
-    } finally {
       setIsLoading(false);
-    }
+    }, 1000);
   };
 
   if (isMinimized) {
@@ -81,10 +120,10 @@ export default function AIChatSupport({ context }: { context?: string }) {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-[340px] bg-white rounded-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col transition-all duration-300">
+    <div className={`fixed bottom-6 right-6 z-50 w-[340px] ${isOpen ? 'h-[500px]' : 'h-auto'} max-h-[calc(100vh-48px)] bg-white rounded-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col transition-all duration-300`}>
       
       {/* Header aligned exactly to standard Google style panel */}
-      <div className="px-5 pt-5 pb-4 flex justify-between items-start">
+      <div className="px-5 pt-5 pb-4 flex justify-between items-start shrink-0">
          <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center relative shadow-sm border border-[#e5e7eb]">
                 <Sparkles className="w-4 h-4 text-red-600" />
@@ -122,12 +161,7 @@ export default function AIChatSupport({ context }: { context?: string }) {
       ) : (
         /* Open Chat State */
         <>
-          <div className="flex-1 h-[340px] overflow-y-auto px-5 py-2 space-y-5 custom-scrollbar bg-white">
-             {/* Initial welcome in chat view */}
-             <div className="bg-[#f9fafb] rounded-[16px] rounded-tl-[4px] p-4 text-[13px] text-[#374151] inline-block border border-[#e5e7eb]">
-               Hi there! I'm a new <strong>AI support assistant</strong>. I can help with questions about Maitsys features, settings, and more.
-             </div>
-             
+          <div className="flex-1 overflow-y-auto px-5 py-2 space-y-5 bg-white">
              {messages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div className={`max-w-[85%] rounded-[16px] px-4 py-3 text-[13px] leading-relaxed border ${
