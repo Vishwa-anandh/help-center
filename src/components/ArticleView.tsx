@@ -291,7 +291,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
 
         <div className="flex-1 lg:min-w-[55%] 2xl:min-w-[60%] max-w-none mx-auto w-full">
               <main className="bg-white lg:border lg:border-[#e5e7eb] lg:rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-              <article className="p-[30px] md:p-[40px]">
+              <article className="px-[30px] pb-[30px] pt-[20px] md:px-[40px] md:pb-[40px] md:pt-[24px]">
               
               <nav aria-label="Breadcrumb" className="flex items-center justify-between mb-3">
 
