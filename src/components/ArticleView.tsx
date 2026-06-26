@@ -408,18 +408,16 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
 
                                 {/* 48. Video Embeds (Mocked play button overlay) */}
                                 {step.image && (
-                                  <div className={`mt-2 relative group/img inline-block transition-opacity ${isCompleted ? 'opacity-70' : ''}`}>
-                                    <div className="absolute inset-0 bg-red-900/10 opacity-0 group-hover/img:opacity-100 rounded-xl transition-opacity pointer-events-none flex items-center justify-center" aria-hidden="true">
-                                    </div>
+                                  <div className={`mt-2 relative inline-block transition-opacity ${isCompleted ? 'opacity-70' : ''}`}>
                                     <button
                                       onClick={() => setLightboxImage(step.image as string)}
-                                      className="block w-full text-left outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded-xl"
+                                      className="inline-block text-left outline-none focus-visible:ring-2 focus-visible:ring-red-500 rounded-xl"
                                       aria-label={`View full size media for ${step.title}`}
                                     >
                                       <img 
                                         src={step.image} 
                                         alt={step.title} 
-                                        className="rounded-xl border border-[#e5e7eb] shadow-sm hover:shadow-lg w-[75%] md:w-[50%] cursor-zoom-in transition-all duration-300 hover:-translate-y-1"
+                                        className="w-[75%] md:w-[50%] cursor-zoom-in transition-opacity hover:opacity-90"
                                       />
                                     </button>
                                   </div>
