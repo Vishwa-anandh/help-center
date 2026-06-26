@@ -25,7 +25,8 @@ export const helpCategories: HelpCategory[] = [
   { id: "user-management", title: "User Management" },
   { id: "profile-management", title: "Profile Management" },
   { id: "role-management", title: "Role Management" },
-  { id: "risk-simulation", title: "Risk & Simulation" }
+  { id: "risk-simulation", title: "Risk & Simulation" },
+  { id: "workflows", title: "Workflows & Approvals" }
 ];
 
 export const helpArticles: HelpArticle[] = [
@@ -282,6 +283,217 @@ export const helpArticles: HelpArticle[] = [
         "title": "Review risk score",
         "action": "Review the risk score, new violations, and resolved violations.",
         "image": "/images/workflows/How_to_Simulate_Role_Changes_Analyze_Risks_Workflow/step3a.png"
+      }
+    ]
+  }
+,
+
+  {
+    id: 'workflow-8',
+    title: 'How to Access and Manage My Requests',
+    excerpt: 'Follow these steps to access and manage your requests.',
+    content: 'How to Access and Manage My Requests',
+    categoryId: 'workflows',
+    readTime: '3 min read',
+    tags: ['Workflow', 'Matrx Vault'],
+    steps: [
+      {
+        title: "Navigate to My Requests",
+        action: `Click **Workflow** from the top navigation menu, then select **My Requests** from the dropdown list.`,
+        image: "/images/workflows/Steps_to_Access_and_Manage_My_Requests/imagec.png"
+      },
+      {
+        title: "View Requests",
+        action: `View your requests under the **All**, **Pending**, **Approved**, or **Rejected** tabs to filter by status.`,
+        image: "/images/workflows/Steps_to_Access_and_Manage_My_Requests/image6.png"
+      },
+      {
+        title: "Refine and Search",
+        action: `Use the **Search** field to find a specific request. Click **Filter** to select date ranges to refine the request list. You can view the details, workflow status, access window, AI Risk Assessment score, and risk level.`,
+        image: "/images/workflows/Steps_to_Access_and_Manage_My_Requests/image8.png"
+      },
+      {
+        title: "View Sessions",
+        action: `Click **Sessions** to view the details of an active firefighter session.`,
+        image: "/images/workflows/Steps_to_Access_and_Manage_My_Requests/image9.png"
+      },
+      {
+        title: "View Logs",
+        action: `Click **Logs** to view the recorded activity of the selected request.`,
+        image: "/images/workflows/Steps_to_Access_and_Manage_My_Requests/image5.png"
+      },
+      {
+        title: "Review SAP Logs",
+        action: `The SAP LOGS provides a consolidated view of system logs and user activities with filtering and severity tracking options.`,
+        image: "/images/workflows/Steps_to_Access_and_Manage_My_Requests/image7.png"
+      },
+      {
+        title: "View Request Details",
+        action: `Click **Details** to view the complete information and workflow status of the selected request.`,
+        image: "/images/workflows/Steps_to_Access_and_Manage_My_Requests/imaged.png"
+      },
+      {
+        title: "Check Approval History",
+        action: `The Request Details panel displays request information, current status, and the complete approval history.`,
+        image: "/images/workflows/Steps_to_Access_and_Manage_My_Requests/imagef.png"
+      }
+    ]
+  },
+  {
+    id: 'workflow-9',
+    title: 'How to Check and Review Request Approvals',
+    excerpt: 'Follow these steps to check and review request approvals.',
+    content: 'How to Check and Review Request Approvals',
+    categoryId: 'workflows',
+    readTime: '3 min read',
+    tags: ['Workflow', 'Matrx Vault'],
+    steps: [
+      {
+        title: "Navigate to Approvals",
+        action: `From the top navigation menu, click **Workflow**, then select **Approvals** from the dropdown menu.`,
+        image: "/images/workflows/Steps_to_check_and_review_the_Approval_of_the_requests/image10.png"
+      },
+      {
+        title: "Review Requests",
+        action: `Review the list of requests displayed on the Approvals page. Use the status tabs (All, Pending, Approved, Rejected, or Sign Off) to narrow down the requests if required. Identify the request you want to review and click the **Details** button.`,
+        image: "/images/workflows/Steps_to_check_and_review_the_Approval_of_the_requests/image11.png"
+      },
+      {
+        title: "View Request Details",
+        action: `The Request Details panel opens, displaying complete request information for your review.`,
+        image: "/images/workflows/Steps_to_check_and_review_the_Approval_of_the_requests/image12.png"
+      }
+    ]
+  },
+  {
+    id: 'workflow-10',
+    title: 'How to Configure High-Level Approvers',
+    excerpt: 'Follow these steps to configure high-level approvers.',
+    content: 'How to Configure High-Level Approvers',
+    categoryId: 'workflows',
+    readTime: '3 min read',
+    tags: ['Workflow', 'Matrx Vault'],
+    steps: [
+      {
+        title: "Navigate to High-Level Approvers",
+        action: `From the top navigation menu, click **Workflow**, then select **High Level Approvers** from the Configuration section.`,
+        image: "/images/workflows/Steps_to_Configure_High_Level_Approvers/image17.png"
+      },
+      {
+        title: "Add a New Approver",
+        action: `Click **Add Approver** in the upper-right corner of the page.`,
+        image: "/images/workflows/Steps_to_Configure_High_Level_Approvers/image18.png"
+      },
+      {
+        title: "Fill Details and Save",
+        action: `Fill in all the requested High Level Approver details, then click **Add Approver** to save the configuration.`,
+        image: "/images/workflows/Steps_to_Configure_High_Level_Approvers/image19.png"
+      }
+    ]
+  },
+  {
+    id: 'workflow-11',
+    title: 'How to Configure Sign-Off Escalations',
+    excerpt: 'Follow these steps to configure sign-off escalations.',
+    content: 'How to Configure Sign-Off Escalations',
+    categoryId: 'workflows',
+    readTime: '4 min read',
+    tags: ['Workflow', 'Matrx Vault'],
+    steps: [
+      {
+        title: "Navigate to Sign-Off Escalations",
+        action: `From the top navigation menu, click **Workflow**, then select **Sign-Off Escalations** from the dropdown menu.`,
+        image: "/images/workflows/Steps_to_Configure_Sign_Off_Escalations/image1a.png"
+      },
+      {
+        title: "Add the First Escalation Level",
+        action: `In the Systems panel on the left, select the required SAP system. Then, click **Add First Level** in the center of the page.`,
+        image: "/images/workflows/Steps_to_Configure_Sign_Off_Escalations/image1b.png"
+      },
+      {
+        title: "Add Escalation Details",
+        action: `Fill in all the required details for the Escalation. You can also add another Escalation level if needed.`,
+        image: "/images/workflows/Steps_to_Configure_Sign_Off_Escalations/image1c.png"
+      },
+      {
+        title: "Save Configuration",
+        action: `After completing all escalation levels, click on the **Save** icon located in the upper-right corner of the page.`,
+        image: "/images/workflows/Steps_to_Configure_Sign_Off_Escalations/image1d.png"
+      }
+    ]
+  },
+  {
+    id: 'workflow-12',
+    title: 'How to Create a New Request',
+    excerpt: 'Follow these steps to create a new request.',
+    content: 'How to Create a New Request',
+    categoryId: 'workflows',
+    readTime: '3 min read',
+    tags: ['Workflow', 'Matrx Vault'],
+    steps: [
+      {
+        title: "Navigate to New Request",
+        action: `Click **Workflow** from the top navigation menu, then select **New Request** from the dropdown list.`,
+        image: "/images/workflows/Steps_to_Create_a_New_Request/imageb.png"
+      },
+      {
+        title: "Enter Request Details",
+        action: `Enter the required request details into the provided fields.`,
+        image: "/images/workflows/Steps_to_Create_a_New_Request/image3.png"
+      },
+      {
+        title: "Submit Request",
+        action: `Click **Submit Request** to create the request.`
+      }
+    ]
+  },
+  {
+    id: 'workflow-13',
+    title: 'How to View and Manage Active Sessions',
+    excerpt: 'Follow these steps to view and manage active sessions.',
+    content: 'How to View and Manage Active Sessions',
+    categoryId: 'workflows',
+    readTime: '3 min read',
+    tags: ['Workflow', 'Matrx Vault'],
+    steps: [
+      {
+        title: "Navigate to the Sessions Page",
+        action: `From the top navigation menu, click **Workflow**, then select **Sessions** from the dropdown menu.`,
+        image: "/images/workflows/Steps_to_View_and_Manage_Active_Sessions/image15.png"
+      },
+      {
+        title: "Review and Revoke Sessions",
+        action: `Select the **Active** tab to view currently active firefighter sessions. Expand the required system to view active users and session details. To terminate a session, locate it and click **Revoke Session**.`,
+        image: "/images/workflows/Steps_to_View_and_Manage_Active_Sessions/image16.png"
+      },
+      {
+        title: "Refresh Session Information",
+        action: `Click the **Refresh** icon on the Sessions page to retrieve the latest session data.`
+      }
+    ]
+  },
+  {
+    id: 'workflow-14',
+    title: 'How to View Escalation Approvals',
+    excerpt: 'Follow these steps to view the escalation approvals.',
+    content: 'How to View Escalation Approvals',
+    categoryId: 'workflows',
+    readTime: '3 min read',
+    tags: ['Workflow', 'Matrx Vault'],
+    steps: [
+      {
+        title: "Navigate to Escalation Approvals",
+        action: `From the top navigation menu, click **Workflow**, then select **Escalation Approvals** from the dropdown menu.`,
+        image: "/images/workflows/Steps_to_view_the_Escalation_Approvals/image13.png"
+      },
+      {
+        title: "Review Escalation Requests",
+        action: `On the Escalation Approvals page, review the list of escalated requests assigned to your scope. Check the request details and approval status before taking action.`,
+        image: "/images/workflows/Steps_to_view_the_Escalation_Approvals/image14.png"
+      },
+      {
+        title: "Verify Scope and Refresh Data",
+        action: `Review the **My Escalation Rights** section to confirm your assigned escalation scope. If no scope is assigned, contact your system administrator for access. Click **Refresh** to retrieve the latest escalation requests and status updates.`
       }
     ]
   }

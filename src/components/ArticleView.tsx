@@ -417,7 +417,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                                       <img 
                                         src={step.image} 
                                         alt={step.title} 
-                                        className="w-[75%] md:w-[50%] cursor-zoom-in transition-opacity hover:opacity-90"
+                                        className="w-full md:w-[75%] cursor-zoom-in transition-opacity hover:opacity-90"
                                       />
                                     </button>
                                   </div>
