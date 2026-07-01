@@ -17,7 +17,7 @@ export default function App() {
   const navigate = useNavigate();
 
   const pathParts = location.pathname.split('/').filter(Boolean);
-  let activeArticleId = "login-workflow";
+  let activeArticleId = "login";
   if (pathParts.length >= 2) {
     activeArticleId = pathParts[1];
   } else if (pathParts.length === 1) {
@@ -61,11 +61,11 @@ export default function App() {
                 <Menu className="w-6 h-6 text-[#4b5563]" />
               </button>
               <span 
-                onClick={() => navigate("/getting-started/login-workflow")}
+                onClick={() => navigate("/getting-started/login")}
                 className="cursor-pointer transition-transform hover:scale-[1.02] flex items-center min-h-[44px]"
                 role="link"
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter') navigate("/getting-started/login-workflow"); }}
+                onKeyDown={(e) => { if (e.key === 'Enter') navigate("/getting-started/login"); }}
                 aria-label="Matrix Vault Home"
               >
                 <img src="/images/branding/matrix_vault_logo.png" alt="Matrix Vault" className="h-8 sm:h-9 w-auto object-contain" />
@@ -164,26 +164,16 @@ export default function App() {
         <main className="flex-1 w-full bg-transparent">
           <Routes>
             <Route path="/:categoryId/:articleId" element={
-              <AnimatePresence mode="wait">
-                {activeArticle && (
-                  <motion.div
-                    key={activeArticle.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ArticleView
-                      article={activeArticle}
-                      onSelectArticle={handleSelectArticle}
-                      allArticles={helpArticles}
-                      categories={helpCategories}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              activeArticle ? (
+                <ArticleView
+                  article={activeArticle}
+                  onSelectArticle={handleSelectArticle}
+                  allArticles={helpArticles}
+                  categories={helpCategories}
+                />
+              ) : <Navigate to="/getting-started/login" replace />
             } />
-            <Route path="*" element={<Navigate to="/getting-started/login-workflow" replace />} />
+            <Route path="*" element={<Navigate to="/getting-started/login" replace />} />
           </Routes>
         </main>
 

@@ -35,7 +35,7 @@ export const helpCategories: HelpCategory[] = [
 
 export const helpArticles: HelpArticle[] = [
   {
-    "id": "login-workflow",
+    "id": "login",
     "categoryId": "getting-started",
     "title": "Sign in securely into the Matrix vault",
     "excerpt": "This document outlines the step-by-step process for securely logging into the Matrix vault.",
@@ -293,7 +293,7 @@ export const helpArticles: HelpArticle[] = [
 ,
 
   {
-    id: 'workflow-8',
+    id: 'how-to-access-and-manage-my-requests',
     title: 'How to Access and Manage My Requests',
     excerpt: 'Follow these steps to access and manage your requests.',
     content: 'How to Access and Manage My Requests',
@@ -344,7 +344,7 @@ export const helpArticles: HelpArticle[] = [
     ]
   },
   {
-    id: 'workflow-9',
+    id: 'how-to-check-and-review-request-approvals',
     title: 'How to Check and Review Request Approvals',
     excerpt: 'Follow these steps to check and review request approvals.',
     content: 'How to Check and Review Request Approvals',
@@ -370,7 +370,7 @@ export const helpArticles: HelpArticle[] = [
     ]
   },
   {
-    id: 'workflow-10',
+    id: 'how-to-configure-high-level-approvers',
     title: 'How to Configure High-Level Approvers',
     excerpt: 'Follow these steps to configure high-level approvers.',
     content: 'How to Configure High-Level Approvers',
@@ -396,7 +396,7 @@ export const helpArticles: HelpArticle[] = [
     ]
   },
   {
-    id: 'workflow-11',
+    id: 'how-to-configure-sign-off-escalations',
     title: 'How to Configure Sign-Off Escalations',
     excerpt: 'Follow these steps to configure sign-off escalations.',
     content: 'How to Configure Sign-Off Escalations',
@@ -427,7 +427,7 @@ export const helpArticles: HelpArticle[] = [
     ]
   },
   {
-    id: 'workflow-12',
+    id: 'how-to-create-a-new-request',
     title: 'How to Create a New Request',
     excerpt: 'Follow these steps to create a new request.',
     content: 'How to Create a New Request',
@@ -452,7 +452,7 @@ export const helpArticles: HelpArticle[] = [
     ]
   },
   {
-    id: 'workflow-13',
+    id: 'how-to-view-and-manage-active-sessions',
     title: 'How to View and Manage Active Sessions',
     excerpt: 'Follow these steps to view and manage active sessions.',
     content: 'How to View and Manage Active Sessions',
@@ -477,7 +477,7 @@ export const helpArticles: HelpArticle[] = [
     ]
   },
   {
-    id: 'workflow-14',
+    id: 'how-to-view-escalation-approvals',
     title: 'How to View Escalation Approvals',
     excerpt: 'Follow these steps to view the escalation approvals.',
     content: 'How to View Escalation Approvals',

@@ -137,7 +137,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
   const currentCategory = categories.find(c => c.id === article.categoryId);
   const allCollapsed = article.steps && article.steps.length > 0 && article.steps.every((_, i) => collapsedSteps[i]);
 
-  const mockTags = article.id === 'login-workflow' ? ['security', 'authentication', 'important'] : ['workflow', 'dashboard', 'guide'];
+  const mockTags = article.id === 'login' ? ['security', 'authentication', 'important'] : ['workflow', 'dashboard', 'guide'];
 
 
 
@@ -289,7 +289,8 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
             )}
           </aside>
 
-        <div className="flex-1 lg:min-w-[55%] 2xl:min-w-[60%] max-w-none mx-auto w-full">
+        <div className="flex-1 flex flex-col lg:flex-row gap-6 lg:gap-8 w-full min-w-0">
+            <div className="flex-1 lg:min-w-[55%] 2xl:min-w-[60%] max-w-none mx-auto w-full">
               <main className="bg-white lg:border lg:border-[#e5e7eb] lg:rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
               <article className="px-[30px] pb-[30px] pt-[20px] md:px-[40px] md:pb-[40px] md:pt-[24px]">
               
@@ -589,8 +590,8 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
              )}
            </div>
         </nav>
-
       </div>
+    </div>
 
       {scrollProgress > 20 && (
         <AnimatePresence>
