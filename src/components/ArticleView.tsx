@@ -236,7 +236,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                           return (
                             <a 
                               key={art.id} 
-                              href={`#${art.id}`}
+                              href={`/${art.categoryId}/${art.id}`}
                               className={`relative flex items-center gap-2.5 py-1.5 px-2 min-h-[32px] rounded-lg cursor-pointer transition-all outline-none focus-visible:ring-2 focus-visible:ring-red-500 group ${
                                 isActive ? 'bg-red-50' : 'hover:bg-gray-50'
                               }`}
@@ -276,7 +276,7 @@ export default function ArticleView({ article, onSelectArticle, allArticles, cat
                     return (
                       <a 
                         key={id}
-                        href={`#${id}`}
+                        href={`/${allArticles.find(a => a.id === id)?.categoryId}/${id}`}
                         className="text-[13px] text-[#4b5563] hover:text-red-600 py-2.5 px-3 min-h-[44px] rounded-lg hover:bg-gray-50 truncate outline-none focus-visible:text-red-600 transition-colors flex items-center"
                         onClick={(e) => { e.preventDefault(); onSelectArticle(id); }}
                       >

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   Menu, Search, Grid, Bell, ExternalLink, FileText, SearchX, Globe, Type
@@ -9,20 +10,33 @@ import ArticleView from "./components/ArticleView";
 import AIChatSupport from "./components/AIChatSupport";
 
 export default function App() {
-  const [activeArticleId, setActiveArticleId] = useState<string | null>("login-workflow");
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [activeArticleId]);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const pathParts = location.pathname.split('/').filter(Boolean);
+  let activeArticleId = "login-workflow";
+  if (pathParts.length >= 2) {
+    activeArticleId = pathParts[1];
+  } else if (pathParts.length === 1) {
+    activeArticleId = pathParts[0];
+  }
 
   const activeArticle = helpArticles.find(art => art.id === activeArticleId) || null;
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
+
   const handleSelectArticle = (articleId: string) => {
-    setActiveArticleId(articleId);
-    setSearchQuery("");
-    setIsSearchFocused(false);
+    const art = helpArticles.find(a => a.id === articleId);
+    if (art) {
+      navigate(`/${art.categoryId}/${art.id}`);
+      setSearchQuery("");
+      setIsSearchFocused(false);
+    }
   };
 
   const searchResults = helpArticles.filter(art => 
@@ -47,11 +61,11 @@ export default function App() {
                 <Menu className="w-6 h-6 text-[#4b5563]" />
               </button>
               <span 
-                onClick={() => { setActiveArticleId("login-workflow"); }}
+                onClick={() => navigate("/getting-started/login-workflow")}
                 className="cursor-pointer transition-transform hover:scale-[1.02] flex items-center min-h-[44px]"
                 role="link"
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === 'Enter') setActiveArticleId("login-workflow"); }}
+                onKeyDown={(e) => { if (e.key === 'Enter') navigate("/getting-started/login-workflow"); }}
                 aria-label="Matrix Vault Home"
               >
                 <img src="/images/branding/matrix_vault_logo.png" alt="Matrix Vault" className="h-8 sm:h-9 w-auto object-contain" />
@@ -148,24 +162,29 @@ export default function App() {
 
         {/* Main viewport Container */}
         <main className="flex-1 w-full bg-transparent">
-          <AnimatePresence mode="wait">
-            {activeArticle && (
-              <motion.div
-                key="article-view"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <ArticleView
-                  article={activeArticle}
-                  onSelectArticle={handleSelectArticle}
-                  allArticles={helpArticles}
-                  categories={helpCategories}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <Routes>
+            <Route path="/:categoryId/:articleId" element={
+              <AnimatePresence mode="wait">
+                {activeArticle && (
+                  <motion.div
+                    key={activeArticle.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ArticleView
+                      article={activeArticle}
+                      onSelectArticle={handleSelectArticle}
+                      allArticles={helpArticles}
+                      categories={helpCategories}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            } />
+            <Route path="*" element={<Navigate to="/getting-started/login-workflow" replace />} />
+          </Routes>
         </main>
 
         <AIChatSupport activeArticle={activeArticle} allArticles={helpArticles} />
